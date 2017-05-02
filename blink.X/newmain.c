@@ -57,8 +57,8 @@ int main(void)
 	while(1)
 	{
 		_LATD0 = 1;
-		__delay32(15000000);
+		__delay32(150000000);
 		_LATD0 = 0;
-		__delay32(15000000);
+		__delay32(150000000);
 	}
 }
