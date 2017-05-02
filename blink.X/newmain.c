@@ -10,6 +10,9 @@
 // DSPIC30F2020 Configuration Bit Settings
 // 'C' source line config statements
 
+// xtal
+#define _XTAL_FREQ 20000000
+
 // FBS
 #pragma config BWRP = BWRP_OFF          // Boot Segment Write Protect (Boot Segment may be written)
 #pragma config BSS = NO_BOOT_CODE       // Boot Segment Program Flash Code Protection (No Boot Segment)
@@ -44,11 +47,6 @@
 
 #include <xc.h>
 #include <libpic30.h>
-
-// configuration settings
-_FOSC(CSW_FSCM_OFF & FRC_PLL16); // Fosc = 16x7.5 Mhz, i.e 30 MIPS
-_FWDT(WDT_OFF);
-_FBORPOR(MCLR_DIS);
 
 int main(void)
 {
