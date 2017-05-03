@@ -89,8 +89,8 @@ ifneq ($(INFORMATION_MESSAGE), )
 endif
 	${MAKE}  -f nbproject/Makefile-XC16_dsPIC30F6014A.mk dist/${CND_CONF}/${IMAGE_TYPE}/serial_monitor.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
 
-MP_PROCESSOR_OPTION=30F6014A
-MP_LINKER_FILE_OPTION=,--script=p30F6014A.gld
+MP_PROCESSOR_OPTION=30F2020
+MP_LINKER_FILE_OPTION=,--script=p30F2020.gld
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
