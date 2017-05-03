@@ -234,18 +234,18 @@ userdata
 .comment
  *(.comment)
 
-.debug_info       0x000000        0x1ab
+.debug_info       0x000000        0x20f
  *(.debug_info)
- .debug_info      0x000000        0x1ab build/default/production/newmain.o
+ .debug_info      0x000000        0x20f build/default/production/newmain.o
  *(.gnu.linkonce.wi.*)
 
 .debug_abbrev     0x000000         0x7f
  *(.debug_abbrev)
  .debug_abbrev    0x000000         0x7f build/default/production/newmain.o
 
-.debug_line       0x000000         0x97
+.debug_line       0x000000         0x98
  *(.debug_line)
- .debug_line      0x000000         0x97 build/default/production/newmain.o
+ .debug_line      0x000000         0x98 build/default/production/newmain.o
 
 .debug_frame      0x000000         0x30
  *(.debug_frame)

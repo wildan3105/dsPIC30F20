@@ -1,17 +1,7 @@
-/* 
- * File:   newmain.c
- * Author: Wildan S. Nahar
- *
- * Created on April 27, 2017, 7:01 PM
- */
-
-// dsPIC30F2020 blink example
 
 // DSPIC30F2020 Configuration Bit Settings
-// 'C' source line config statements
 
-// xtal
-#define _XTAL_FREQ 16000
+// 'C' source line config statements
 
 // FBS
 #pragma config BWRP = BWRP_OFF          // Boot Segment Write Protect (Boot Segment may be written)
@@ -34,7 +24,7 @@
 #pragma config WDTPS = WDTPOST_PS32768  // Watchdog Timer Postscaler (1:32,768)
 #pragma config FWPSA0 = WDTPRE_PR128    // WDT Prescaler (1:128)
 #pragma config WWDTEN = WINDIS_OFF      // Watchdog Timer Window (Non-Window mode)
-#pragma config FWDTEN = FWDTEN_OFF       // Watchdog Timer Enable (Enable)
+#pragma config FWDTEN = FWDTEN_OFF      // Watchdog Timer Enable (Disable)
 
 // FPOR
 #pragma config FPWRT = PWRT_128         // POR Timer Value (128ms)
@@ -46,54 +36,5 @@
 // Use project enums instead of #define for ON and OFF.
 
 #include <xc.h>
-#include <libpic30.h>
-#include <stdio.h>
 
-//void delay(void){
-//    long i=65535;
-//    while(i--);
-//}
-//
-//int main(){
-//    ADPCFG  = 0xFFFF;
-//    TRISA   = 0x0000;
-//    TRISB   = 0x0000;
-//    
-//    TRISD   = 0x0000;
-//    TRISE   = 0x0000;
-//    TRISF   = 0x0000;
-//    
-//    while(1){
-//        PORTA   = 0xFFFF;
-//        PORTB   = 0xFFFF;
-//        
-//        PORTD   = 0xFFFF;
-//        PORTE   = 0xFFFF;
-//        PORTF   = 0xFFFF;
-//        delay();
-//        
-//        PORTA   = 0x0000;
-//        PORTB   = 0x0000;
-//        
-//        PORTD   = 0x0000;
-//        PORTE   = 0x0000;
-//        PORTF   = 0x0000;
-//        delay();
-//    }
-//    return 0;
-//}
 
-int main(void)
-{
-	// Make RDO as a digital output
-	_TRISD0 = 0;
-
-	// Blink LED on RD0
-	while(1)
-	{
-		_LATD0 = 1;
-		__delay32(150000000);
-		_LATD0 = 0;
-		__delay32(150000000);
-	}
-}
