@@ -10,8 +10,19 @@
 // DSPIC30F2020 Configuration Bit Settings
 // 'C' source line config statements
 
+#include <xc.h>
+#include <libpic30.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <p30F2020.h>
+
 // xtal
-#define _XTAL_FREQ 16000
+#define _XTAL_FREQ 160000000
+
+
+// DSPIC30F2020 Configuration Bit Settings
+
+// 'C' source line config statements
 
 // FBS
 #pragma config BWRP = BWRP_OFF          // Boot Segment Write Protect (Boot Segment may be written)
@@ -25,7 +36,7 @@
 #pragma config FNOSC = PRIOSC           // Oscillator Mode (Primary Oscillator (HS, EC))
 
 // FOSC
-#pragma config POSCMD = PRIOSC_OFF      // Primary Oscillator Source (Primary Oscillator Disabled)
+#pragma config POSCMD = HS              // Primary Oscillator Source (HS Oscillator Mode)
 #pragma config OSCIOFNC = OSC2_CLKO     // OSCI/OSCO Pin Function (OSCO pin has clock out function)
 #pragma config FRANGE = FRC_HI_RANGE    // Frequency Range Select (High Range)
 #pragma config FCKSM = CSW_FSCM_OFF     // Clock Switching and Monitor (Sw Disabled, Mon Disabled)
@@ -34,7 +45,7 @@
 #pragma config WDTPS = WDTPOST_PS32768  // Watchdog Timer Postscaler (1:32,768)
 #pragma config FWPSA0 = WDTPRE_PR128    // WDT Prescaler (1:128)
 #pragma config WWDTEN = WINDIS_OFF      // Watchdog Timer Window (Non-Window mode)
-#pragma config FWDTEN = FWDTEN_OFF       // Watchdog Timer Enable (Enable)
+#pragma config FWDTEN = FWDTEN_OFF      // Watchdog Timer Enable (Disable)
 
 // FPOR
 #pragma config FPWRT = PWRT_128         // POR Timer Value (128ms)
@@ -45,10 +56,7 @@
 // #pragma config statements should precede project file includes.
 // Use project enums instead of #define for ON and OFF.
 
-#include <xc.h>
-#include <libpic30.h>
-#include <stdio.h>
-
+// #1 version
 //void delay(void){
 //    long i=65535;
 //    while(i--);
@@ -83,17 +91,50 @@
 //    return 0;
 //}
 
-int main(void)
-{
-	// Make RDO as a digital output
-	_TRISD0 = 0;
+// #2 version
+//int main(void)
+//{
+//	// Make RDO as a digital output
+//	_TRISD0 = 0;
+//
+//	// Blink LED on RD0
+//	while(1)
+//	{
+//		_LATD0 = 0xff;
+//		__delay32(150000000);
+//		_LATD0 = 0x00;
+//		__delay32(150000000);
+//	}
+//}
 
-	// Blink LED on RD0
-	while(1)
-	{
-		_LATD0 = 1;
-		__delay32(150000000);
-		_LATD0 = 0;
-		__delay32(150000000);
-	}
+// #3 version
+int main(){
+    _TRISD0 = 0x00;
+    
+    while(1){
+        _RD0 = 0xff;
+        __delay32(150000000);
+        _RD0 = 0x00;
+        __delay32(150000000);
+    }
+    return 0;
 }
+
+// #4 version
+//void Delay(unsigned int a);
+//int main(){
+//    TRISDbits.TRISD0 = 0;
+//    LATDbits.LATD0 = 0;
+//    
+//    while(1){
+//        LATDbits.LATD0 = ~LATDbits.LATD0;
+//        Delay(6000);
+//    }
+//    return 0;
+//}
+//
+//void Delay(unsigned int a){
+//    unsigned int i;
+//    for(i=0; i<a; i++)
+//        ;
+//}
