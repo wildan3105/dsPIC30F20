@@ -7,7 +7,7 @@ A list of dsPIC30F20 most used projects
 3. IDE : MPLAB X IDE v3.60
 
 # Checklist :
-- [ ] Digital Output
+- [x] Digital Output
 - [ ] Digital Input
 - [ ] Analog Input
 - [ ] Serial Output
