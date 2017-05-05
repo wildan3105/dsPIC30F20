@@ -1,2 +1,3 @@
 build/default/production/newmain.o:  \
-newmain.c 
+newmain.c  \
+config.h 

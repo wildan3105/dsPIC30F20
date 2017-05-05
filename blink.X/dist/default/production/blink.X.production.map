@@ -78,9 +78,9 @@ section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x100                0xce           0x135  (309)
 .init.delay32                0x1ce                0x1c            0x2a  (42)
-.text                        0x1ea                0x16            0x21  (33)
+.text                        0x1ea                0x18            0x24  (36)
 
-                 Total program memory used (bytes):          0x180  (384) 3%
+                 Total program memory used (bytes):          0x183  (387) 3%
 
 
 Ivt Memory  [Origin = 0x4, Length = 0x7c]
@@ -234,9 +234,9 @@ userdata
 .comment
  *(.comment)
 
-.debug_info       0x000000        0x20e
+.debug_info       0x000000        0x32d
  *(.debug_info)
- .debug_info      0x000000        0x20e build/default/production/newmain.o
+ .debug_info      0x000000        0x32d build/default/production/newmain.o
  *(.gnu.linkonce.wi.*)
 
 .debug_abbrev     0x000000         0x7d
@@ -251,9 +251,9 @@ userdata
  *(.debug_frame)
  .debug_frame     0x000000         0x30 build/default/production/newmain.o
 
-.debug_str        0x000000         0x14
+.debug_str        0x000000         0x13
  *(.debug_str)
- .debug_str       0x000000         0x14 build/default/production/newmain.o
+ .debug_str       0x000000         0x13 build/default/production/newmain.o
 
 .debug_loc
  *(.debug_loc)
@@ -798,20 +798,20 @@ LOAD FBS
 LOAD default_isr
 
 .debug_pubtypes
-                  0x000018         0x50
+                  0x000018         0x4e
  .debug_pubtypes
-                  0x000018         0x50 build/default/production/newmain.o
+                  0x000018         0x4e build/default/production/newmain.o
 
 __c30_signature
-                  0x000068         0x18
+                  0x000066         0x18
  __c30_signature
-                  0x000068          0x6 build/default/production/newmain.o
+                  0x000066          0x6 build/default/production/newmain.o
  __c30_signature
-                  0x00006e          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
+                  0x00006c          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
  __c30_signature
-                  0x000074          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(data_init_standard.o)
+                  0x000072          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(data_init_standard.o)
  __c30_signature
-                  0x00007a          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(delay32.Leo)
+                  0x000078          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(delay32.Leo)
 
 .config_ICS       0xf8000e          0x2
  .config_ICS      0xf8000e          0x2 build/default/production/newmain.o
@@ -833,6 +833,6 @@ __c30_signature
  .init.delay32    0x0001ce         0x1c c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(delay32.Leo)
                   0x0001ce                  ___delay32
 
-.text             0x0001ea         0x16
- .text            0x0001ea         0x16 build/default/production/newmain.o
+.text             0x0001ea         0x18
+ .text            0x0001ea         0x18 build/default/production/newmain.o
                   0x0001ea                  _main

@@ -240,14 +240,14 @@ userdata
 .comment
  *(.comment)
 
-.debug_info       0x000000        0x1d0
+.debug_info       0x000000        0x20e
  *(.debug_info)
- .debug_info      0x000000        0x1d0 build/default/debug/newmain.o
+ .debug_info      0x000000        0x20e build/default/debug/newmain.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000         0x8c
+.debug_abbrev     0x000000         0x7d
  *(.debug_abbrev)
- .debug_abbrev    0x000000         0x8c build/default/debug/newmain.o
+ .debug_abbrev    0x000000         0x7d build/default/debug/newmain.o
 
 .debug_line       0x000000         0x98
  *(.debug_line)
@@ -257,9 +257,9 @@ userdata
  *(.debug_frame)
  .debug_frame     0x000000         0x30 build/default/debug/newmain.o
 
-.debug_str        0x000000          0xa
+.debug_str        0x000000         0x14
  *(.debug_str)
- .debug_str       0x000000          0xa build/default/debug/newmain.o
+ .debug_str       0x000000         0x14 build/default/debug/newmain.o
 
 .debug_loc
  *(.debug_loc)
@@ -804,20 +804,20 @@ LOAD FBS
 LOAD default_isr
 
 .debug_pubtypes
-                  0x000018         0x31
+                  0x000018         0x50
  .debug_pubtypes
-                  0x000018         0x31 build/default/debug/newmain.o
+                  0x000018         0x50 build/default/debug/newmain.o
 
 __c30_signature
-                  0x000049         0x18
+                  0x000068         0x18
  __c30_signature
-                  0x000049          0x6 build/default/debug/newmain.o
+                  0x000068          0x6 build/default/debug/newmain.o
  __c30_signature
-                  0x00004f          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
+                  0x00006e          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
  __c30_signature
-                  0x000055          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(data_init_standard.o)
+                  0x000074          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(data_init_standard.o)
  __c30_signature
-                  0x00005b          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(delay32.Leo)
+                  0x00007a          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(delay32.Leo)
 
 .config_ICS       0xf8000e          0x2
  .config_ICS      0xf8000e          0x2 build/default/debug/newmain.o

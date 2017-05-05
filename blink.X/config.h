@@ -1,8 +1,3 @@
-
-// DSPIC30F2020 Configuration Bit Settings
-
-// 'C' source line config statements
-
 // FBS
 #pragma config BWRP = BWRP_OFF          // Boot Segment Write Protect (Boot Segment may be written)
 #pragma config BSS = NO_BOOT_CODE       // Boot Segment Program Flash Code Protection (No Boot Segment)
@@ -15,7 +10,7 @@
 #pragma config FNOSC = PRIOSC           // Oscillator Mode (Primary Oscillator (HS, EC))
 
 // FOSC
-#pragma config POSCMD = PRIOSC_OFF      // Primary Oscillator Source (Primary Oscillator Disabled)
+#pragma config POSCMD = HS              // Primary Oscillator Source (HS Oscillator Mode)
 #pragma config OSCIOFNC = OSC2_CLKO     // OSCI/OSCO Pin Function (OSCO pin has clock out function)
 #pragma config FRANGE = FRC_HI_RANGE    // Frequency Range Select (High Range)
 #pragma config FCKSM = CSW_FSCM_OFF     // Clock Switching and Monitor (Sw Disabled, Mon Disabled)
@@ -31,10 +26,3 @@
 
 // FICD
 #pragma config ICS = ICS_PGD            // Comm Channel Select (Use PGC/EMUC and PGD/EMUD)
-
-// #pragma config statements should precede project file includes.
-// Use project enums instead of #define for ON and OFF.
-
-#include <xc.h>
-
-
