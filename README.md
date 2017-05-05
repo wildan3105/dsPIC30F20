@@ -7,18 +7,11 @@ A list of dsPIC30F20 most used projects
 3. IDE : MPLAB X IDE v3.60
 
 # Checklist :
-:white_medium_square: Digital Output
-
-:white_medium_square: Digital Input
-
-:white_medium_square: Analog Input
-
-:white_medium_square: Serial Output
-
-:white_medium_square: Serial Input
-
-:white_medium_square: Timer
-
-:white_medium_square: Interrupt
-
-:white_medium_square: Pulse With Modulation (PWM)
+- [ ] Digital Output
+- [ ] Digital Input
+- [ ] Analog Input
+- [ ] Serial Output
+- [ ] Serial Input
+- [ ] Timer
+- [ ] Interrupt
+- [ ] Pulse With Modulation (PWM)
