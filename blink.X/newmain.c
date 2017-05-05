@@ -15,16 +15,22 @@
 #include <stdlib.h>
 #include "config.h"
 
+void delay(void) {
+    long i = 65535;
+    while(i--);        
+}
 
 int main(){
-    TRISBbits.TRISB5 = 0; // set pin as output
+    ADPCFG = 1; // Setup A/D PORT CONFIGURATION REGISTER as digital
+    TRISB = 0; // configures port B as output
+    TRISBbits.TRISB5= 0; // configures pin RB5 of port B as output
     LATBbits.LATB5 = 1; // set pin as high
     
     while(1){
         LATBbits.LATB5 = 1; // set pin as high
-        __delay_ms(1000);
+        delay();
         LATBbits.LATB5 = 0; // set pin as low
-        __delay_ms(1000);
+        delay();
     }
     return 0;
 }
