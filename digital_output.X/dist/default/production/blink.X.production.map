@@ -75,9 +75,9 @@ Program Memory  [Origin = 0x100, Length = 0x1f00]
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x100                0xce           0x135  (309)
-.text                        0x1ce                0x1c            0x2a  (42)
+.text                        0x1ce                0x2e            0x45  (69)
 
-                 Total program memory used (bytes):          0x15f  (351) 2%
+                 Total program memory used (bytes):          0x17a  (378) 3%
 
 
 Aivt Memory  [Origin = 0x84, Length = 0x7c]
@@ -238,9 +238,9 @@ userdata
  *(.debug_abbrev)
  .debug_abbrev    0x000000         0x9f build/default/production/newmain.o
 
-.debug_line       0x000000         0x9a
+.debug_line       0x000000         0x9d
  *(.debug_line)
- .debug_line      0x000000         0x9a build/default/production/newmain.o
+ .debug_line      0x000000         0x9d build/default/production/newmain.o
 
 .debug_frame      0x000000         0x30
  *(.debug_frame)
@@ -822,6 +822,6 @@ __c30_signature
 .config_FNOSC     0xf80006          0x2
  .config_FNOSC    0xf80006          0x2 build/default/production/newmain.o
 
-.text             0x0001ce         0x1c
- .text            0x0001ce         0x1c build/default/production/newmain.o
+.text             0x0001ce         0x2e
+ .text            0x0001ce         0x2e build/default/production/newmain.o
                   0x0001ce                  _main

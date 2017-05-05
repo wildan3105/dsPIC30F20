@@ -25,7 +25,7 @@ int main(){
     ADPCFGbits.PCFG5 = 1; // configures pin RB5 as digital
     TRISBbits.TRISB5= 0; // configures pin RB5 of port B as output
         
-    int i = 21;
+    int i = 1;
     while(1){
         if(i<20){
             LATBbits.LATB5 = 0; // led OFF
