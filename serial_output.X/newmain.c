@@ -13,18 +13,20 @@
 #include <libpic30.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <p30F2020.h>
 #include "config.h"
-#include "uart.h"
+//#include "uart.h"
 
 char buf[10];
 
 int main(){
-    InitUART1();
-//    InitUART2();
+//    InitUART1();
+    U1BRG = 26; // 19200 baudrate, 16000000 FCY
+    U1MODEbits.UARTEN = 1;
     while(1){
-        WriteStringUART1("RECEIVED NOTHING!");
-//        printf("Hello from DSPIC! \n\r");
+//        WriteStringUART1("RECEIVED NOTHING!");
+        printf("26 BRG \n");
+        __delay_ms(500);
     }
     return 0;
 }
-
