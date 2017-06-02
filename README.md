@@ -10,7 +10,7 @@ A list of dsPIC30F20 most used projects
 - [x] Digital Output
 - [ ] Digital Input
 - [ ] Analog Input
-- [ ] Serial Output
+- [x] Serial Output
 - [ ] Serial Input
 - [ ] Timer
 - [ ] Interrupt
