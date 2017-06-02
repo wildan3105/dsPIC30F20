@@ -17,16 +17,18 @@
 #include "config.h"
 //#include "uart.h"
 
-char buf[10];
 
 int main(){
-//    InitUART1();
+    int resistance;
+    
     U1BRG = 26; // 19200 baudrate, 16000000 FCY
     U1MODEbits.UARTEN = 1;
+    
     while(1){
-//        WriteStringUART1("RECEIVED NOTHING!");
-        printf("26 BRG \n");
-        __delay_ms(500);
+//        resistance = analogRead(0); // read from A0
+        resistance = 12;
+        printf("as %d \n", resistance);
+        __delay_ms(1000);
     }
     return 0;
 }
