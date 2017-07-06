@@ -9,7 +9,7 @@ A list of dsPIC30F20 most used projects
 # Checklist :
 - [x] Digital Output
 - [ ] Digital Input
-- [ ] Analog Input
+- [x] Analog Input
 - [x] Serial Output
 - [ ] Serial Input
 - [ ] Timer
