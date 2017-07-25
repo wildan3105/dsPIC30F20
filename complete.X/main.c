@@ -1,8 +1,8 @@
-/* 
- * File:   newmain.c
- * Author: Wildan S. Nahar
- * Read analog input from AN1 
- * Created on April 27, 2017, 7:01 PM
+/*
+ * File:   main.c
+ * Author: Wildan
+ *
+ * Created on July 17, 2017, 1:20 PM
  */
 
 #define FCY 8000000UL // FCY = FOSC / 2
@@ -12,6 +12,7 @@
 #include <libpic30.h>
 #include "config.h"
 
+// 1. ANALOG INPUT
 int main(void)
 {
 	int channel1Result;
@@ -40,6 +41,7 @@ int main(void)
 	
 	ADCPC0bits.SWTRG0   = 1;        /* Trigger the Conversion Pair 0 */	
     
+    // 2. SERIAL COMM
     U1BRG = 8; // baudrate
     U1MODEbits.UARTEN = 1; // enable UART
     
@@ -70,3 +72,15 @@ void __attribute__ ((interrupt, no_auto_psv)) _ADCInterrupt(void)
 	channel0Result      = ADCBUF0;  /* Get the conversion result */
 	ADSTATbits.P0RDY    = 0;        /* Clear the ADSTAT bits */	
 }
+
+// DAC
+/*
+    1. Output for offset1 and offset2
+    2. Input range : 2.7 - 5.5 volt
+    3. Output range : Vss to G * Vref (Gain : 1x or 2x) => 0 - 4.096 volt
+    4. Comm : SPI
+ */
+
+// PGA 
+
+// 

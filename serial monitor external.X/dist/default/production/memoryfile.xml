@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project>
-  <executable name="dist/default/production/serial_output.X.production.elf">
+  <executable name="dist/default/production/serial_monitor_external.X.production.elf">
     <memory name="data">
       <units>bytes</units>
       <length>512</length>
@@ -11,8 +11,8 @@
     <memory name="program">
       <units>bytes</units>
       <length>11904</length>
-      <used>2625</used>
-      <free>9279</free>
+      <used>2589</used>
+      <free>9315</free>
     </memory>
   </executable>
 </project>
