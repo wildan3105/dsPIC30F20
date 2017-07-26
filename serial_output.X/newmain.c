@@ -5,20 +5,13 @@
  * Created on April 27, 2017, 7:01 PM
  */
 
-#define FCY 8000000UL // FCY = FOSC / 2
+#include "config.h"
+
+#define FCY 8000000 // FCY = FOSC / 2
 
 #include <xc.h>
 #include <libpic30.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <p30F2020.h>
-#include "config.h"
 
-void Delay(void)
-{
-    int temp;
-    for(temp = 0; temp < 1000; temp++ );
-}
 
 int main(void){
     // baudrate - U1BRG with BRG = 0
@@ -36,8 +29,9 @@ int main(void){
     U1BRG = 12; // baudrate
     U1MODEbits.UARTEN = 1; // enable UART
     
-    printf("test \n"); 
-   Delay();
-    while(1);
+    while(1){
+        printf("test \n");
+        __delay_ms(1000);
+    };
     return -1;
 }
