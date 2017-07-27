@@ -1,7 +1,7 @@
 /* 
  * File:   newmain.c
  * Author: Wildan S. Nahar
- * Read analog input from AN1 
+ * Read dual analog input from AN1 & AN2
  * Created on April 27, 2017, 7:01 PM
  */
 
