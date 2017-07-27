@@ -15,6 +15,7 @@
 int main(void)
 {
 	int channel1Result;
+    int channel3Result;
 		
 	/* Set up the ADC Module */
 	
@@ -43,8 +44,7 @@ int main(void)
     U1BRG = 12; // baudrate 38400
     U1MODEbits.UARTEN = 1; // enable UART
     
-    int resistance;
-	
+    int p1, p2;
 	while (1)
 	{
 		while(ADCPC0bits.PEND0);    /* Wait for the 2nd conversion to
@@ -53,18 +53,21 @@ int main(void)
 		                               conversion	*/	
 		ADCPC0bits.SWTRG0	= 1;    /* Trigger another conversion */	
         
-        resistance = channel1Result; // analog input
-        printf("Thermistor : %d \n", resistance);
+        p1 = channel1Result; // analog input
+        printf("P1 : %d \t P2 : %d ", p1, p2);
         
         __delay32(30000000);
 	}
+  
+    return 0;
 }
 
 void __attribute__ ((interrupt, no_auto_psv)) _ADCInterrupt(void)
 {
 	/* AD Conversion complete early interrupt handler */
 	
-	int channel0Result;                  
+	int channel0Result;
+    int channel2Result;
 	
 	IFS0bits.ADIF       = 0;        /* Clear ADC Interrupt Flag */
 	channel0Result      = ADCBUF0;  /* Get the conversion result */
