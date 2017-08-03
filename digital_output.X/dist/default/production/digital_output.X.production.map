@@ -75,12 +75,12 @@ Program Memory  [Origin = 0x100, Length = 0x1f00]
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x100                0xce           0x135  (309)
-.text                        0x1ce                 0xe            0x15  (21)
+.text                        0x1ce                 0xc            0x12  (18)
 
-                 Total program memory used (bytes):          0x14a  (330) 2%
+                 Total program memory used (bytes):          0x147  (327) 2%
 
 
-Aivt Memory  [Origin = 0x84, Length = 0x7c]
+Ivt Memory  [Origin = 0x4, Length = 0x7c]
 
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
@@ -229,26 +229,26 @@ userdata
 .comment
  *(.comment)
 
-.debug_info       0x000000        0x438
+.debug_info       0x000000        0x1d9
  *(.debug_info)
- .debug_info      0x000000        0x438 build/default/production/newmain.o
+ .debug_info      0x000000        0x1d9 build/default/production/newmain.o
  *(.gnu.linkonce.wi.*)
 
 .debug_abbrev     0x000000         0x90
  *(.debug_abbrev)
  .debug_abbrev    0x000000         0x90 build/default/production/newmain.o
 
-.debug_line       0x000000         0x96
+.debug_line       0x000000         0x95
  *(.debug_line)
- .debug_line      0x000000         0x96 build/default/production/newmain.o
+ .debug_line      0x000000         0x95 build/default/production/newmain.o
 
 .debug_frame      0x000000         0x30
  *(.debug_frame)
  .debug_frame     0x000000         0x30 build/default/production/newmain.o
 
-.debug_str        0x000000         0x1e
+.debug_str        0x000000         0x14
  *(.debug_str)
- .debug_str       0x000000         0x1e build/default/production/newmain.o
+ .debug_str       0x000000         0x14 build/default/production/newmain.o
 
 .debug_loc
  *(.debug_loc)
@@ -793,18 +793,18 @@ LOAD FBS
 LOAD default_isr
 
 .debug_pubtypes
-                  0x000018         0x6f
+                  0x000018         0x50
  .debug_pubtypes
-                  0x000018         0x6f build/default/production/newmain.o
+                  0x000018         0x50 build/default/production/newmain.o
 
 __c30_signature
-                  0x000087         0x12
+                  0x000068         0x12
  __c30_signature
-                  0x000087          0x6 build/default/production/newmain.o
+                  0x000068          0x6 build/default/production/newmain.o
  __c30_signature
-                  0x00008d          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
+                  0x00006e          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
  __c30_signature
-                  0x000093          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(data_init_standard.o)
+                  0x000074          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(data_init_standard.o)
 
 .config_ICS       0xf8000e          0x2
  .config_ICS      0xf8000e          0x2 build/default/production/newmain.o
@@ -822,6 +822,6 @@ __c30_signature
 .config_FNOSC     0xf80006          0x2
  .config_FNOSC    0xf80006          0x2 build/default/production/newmain.o
 
-.text             0x0001ce          0xe
- .text            0x0001ce          0xe build/default/production/newmain.o
+.text             0x0001ce          0xc
+ .text            0x0001ce          0xc build/default/production/newmain.o
                   0x0001ce                  _main

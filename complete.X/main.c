@@ -10,68 +10,41 @@
 #include <xc.h>
 #include <stdio.h>
 #include <libpic30.h>
+#include <p30F2020.h>
 #include "config.h"
 
-// 1. ANALOG INPUT
-int main(void)
-{
-	int channel1Result;
-		
-	/* Set up the ADC Module */
-	
-	ADCONbits.ADSIDL    = 0;        /* Operate in Idle Mode	*/
-	ADCONbits.FORM      = 0;        /* Output in Integer Format	*/
-	ADCONbits.EIE       = 1;        /* Enable Early Interrupt */
-	ADCONbits.ORDER     = 0;        /* Even channel first */
-	ADCONbits.SEQSAMP   = 1;        /* Sequential Sampling Enabled */
-	ADCONbits.ADCS      = 5;        /* Clock Divider is set up for Fadc/14 */
-	
-	ADPCFG              = 0xFFFC;   /* AN0 and AN1 are analog inputs */
-	ADSTAT              = 0;        /* Clear the ADSTAT register */
-	ADCPC0bits.TRGSRC0  = 1;        /* Use SW trigger */
-	ADCPC0bits.IRQEN0	  = 1;		  /* Enable the interrupt	*/
-	
-	ADCONbits.ADON 	    = 1;        /* Start the ADC module	*/	
-			
-	/* Set up the Interrupts */
-	
-	IFS0bits.ADIF       = 0;        /* Clear AD Interrupt Flag */	
-	IPC2bits.ADIP       = 4;        /* Set ADC Interrupt Priority */
-	IEC0bits.ADIE       = 1;        /* Enable the ADC Interrupt */
-	
-	ADCPC0bits.SWTRG0   = 1;        /* Trigger the Conversion Pair 0 */	
-    
-    // 2. SERIAL COMM
-    U1BRG = 8; // baudrate
-    U1MODEbits.UARTEN = 1; // enable UART
-    
-    int resistance;
-	
-	while (1)
-	{
-		while(ADCPC0bits.PEND0);    /* Wait for the 2nd conversion to
-		                               complete	*/
-		channel1Result 	= ADCBUF1;  /* Read the result of the second
-		                               conversion	*/	
-		ADCPC0bits.SWTRG0	= 1;    /* Trigger another conversion */	
-        
-        resistance = channel1Result;
-        printf("Resistance %d \n", resistance);
-        
-        __delay32(30000000);
-	}
-}
+// FLOWCHART
+/*
+    1. Initialization (configuration bits and required)     [-]
+    2. Read ADC from 2 channels                             []                    
+    3. SPI Communication (DAC-offset & PGA-gain selection)  []
+    4. Serial comm (with GUI)                               []
+    5. Serial comm to LabVIEW                               []
+ */
 
-void __attribute__ ((interrupt, no_auto_psv)) _ADCInterrupt(void)
-{
-	/* AD Conversion complete early interrupt handler */
-	
-	int channel0Result;                  
-	
-	IFS0bits.ADIF       = 0;        /* Clear ADC Interrupt Flag */
-	channel0Result      = ADCBUF0;  /* Get the conversion result */
-	ADSTATbits.P0RDY    = 0;        /* Clear the ADSTAT bits */	
-}
+// ANALOG INPUT
+// Converting 4 channels, auto-sample start, TAD conversion start, simultaneous sampling code
+ADPCFG  = 0xFF78;   // RB0, RB1, RB2, & RB7 = analog -> should AN0-AN3
+ADCON1  = 0x00EC;   // SIMSAT bit = 1 implies simultaneous sampling
+                    // ASAM = 1 for auto sample after convert
+ADCHS   = 0x0007;   // Connect AN7 as CH0 input
+
+ADCSSL  = 0;
+ADCON3  = 0x0302;   // Auto sampling 3 TAD, TAD = internal 2 TCY
+ADCON2  = 0x030C;   // CHPS = 1x implies simultaneous cample CH0 to CH3. SMPI = 0011 for interrupt after 4 converts
+
+
+ADCON1bits.ADON = 1;// turn ADC ON
+while(1){
+    ADC16Ptr        = &ADCBUF0;     // initialize ADCBUF pointer
+    OutDataPtr      = &OutData[0];  // point to first TXbuffer value
+    IFS0bits.ADIF   = 0;            // clear the interrupt
+    while(IFS0bits.ADIF);
+    for(count=0; count<4; count++){
+        ADCValue = *ADC16Ptr++;
+        LoadADC(ADCValue);
+    }
+}                   // repeat
 
 // DAC
 /*

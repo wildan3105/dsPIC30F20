@@ -137,10 +137,10 @@ section                    address   length (PC units)   length (bytes) (dec)
 .text                        0x100               0xf68          0x171c  (5916)
 .const                      0x1068                0x14            0x1e  (30)
 .dinit                      0x107c                0xbc           0x11a  (282)
-.text                       0x1138                0x82            0xc3  (195)
-.init.delay32               0x11ba                0x1c            0x2a  (42)
+.text                       0x1138                0x8e            0xd5  (213)
+.init.delay32               0x11c6                0x1c            0x2a  (42)
 
-                 Total program memory used (bytes):         0x1941  (6465) 54%
+                 Total program memory used (bytes):         0x1953  (6483) 54%
 
 
 Ivt Memory  [Origin = 0x4, Length = 0x7c]
@@ -233,14 +233,14 @@ External Symbols in Program Memory (by address):
                   0x000fac                  ___divdi3
                   0x00100c                  ___moddi3
                   0x001138                  _main
-                  0x0011a8                  __ADCInterrupt
-                  0x0011ba                  ___delay32
+                  0x0011b0                  __ADCInterrupt
+                  0x0011c6                  ___delay32
                   0xf80000                  __FBS.sec
                   0xf80004                  __FGS.sec
 
 External Symbols in Program Memory (by name):
 
-                  0x0011a8                  __ADCInterrupt
+                  0x0011b0                  __ADCInterrupt
                   0x000cbe                  __Atexit
                   0x000b88                  __Closreg
                   0x000c4a                  __DNKfflush
@@ -254,7 +254,7 @@ External Symbols in Program Memory (by name):
                   0x000b80                  __Vacopy
                   0x0002c6                  ___Printf_cdnopuxX
                   0x00042a                  ___Putfld_cdnopuxX
-                  0x0011ba                  ___delay32
+                  0x0011c6                  ___delay32
                   0x000fac                  ___divdi3
                   0x000e14                  ___divsi3
                   0x00100c                  ___moddi3
@@ -478,18 +478,18 @@ userdata
  *(.comment)
  .comment         0x000000         0x5e c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-c-elf.a(xfiles.XX_eo)
 
-.debug_info       0x000000        0xcb9
+.debug_info       0x000000        0xd07
  *(.debug_info)
- .debug_info      0x000000        0xcb9 build/default/production/main.o
+ .debug_info      0x000000        0xd07 build/default/production/main.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000         0xef
+.debug_abbrev     0x000000         0xe2
  *(.debug_abbrev)
- .debug_abbrev    0x000000         0xef build/default/production/main.o
+ .debug_abbrev    0x000000         0xe2 build/default/production/main.o
 
-.debug_line       0x000000         0xb1
+.debug_line       0x000000         0xb4
  *(.debug_line)
- .debug_line      0x000000         0xb1 build/default/production/main.o
+ .debug_line      0x000000         0xb4 build/default/production/main.o
 
 .debug_frame      0x000000         0x62
  *(.debug_frame)
@@ -1168,11 +1168,11 @@ __c30_signature
 .dinit            0x00107c         0xbc
  .dinit           0x00107c         0xbc data_init
 
-.text             0x001138         0x82
- .text            0x001138         0x82 build/default/production/main.o
+.text             0x001138         0x8e
+ .text            0x001138         0x8e build/default/production/main.o
                   0x001138                  _main
-                  0x0011a8                  __ADCInterrupt
+                  0x0011b0                  __ADCInterrupt
 
-.init.delay32     0x0011ba         0x1c
- .init.delay32    0x0011ba         0x1c c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(delay32.Leo)
-                  0x0011ba                  ___delay32
+.init.delay32     0x0011c6         0x1c
+ .init.delay32    0x0011c6         0x1c c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(delay32.Leo)
+                  0x0011c6                  ___delay32

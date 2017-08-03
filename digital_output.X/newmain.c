@@ -14,12 +14,15 @@
 int main(void){
             
     // DEFINE DIGITAL I/O
-    ADPCFG = 0xffff; // all pins of port B are digital
-    ADPCFGbits.PCFG5 = 1; // configures pin RB5 as digital
-    TRISBbits.TRISB5 = 0; // configures pin RB5 of port B as output
+//    ADPCFG = 0xffff; // all pins of port B are digital
+//    ADPCFGbits.PCFG5 = 1; // configures pin RB5 as digital
+//    TRISBbits.TRISB5 = 0; // configures pin RB5 of port B as output
     
+    PORTA = 0xffff; 
+    TRISAbits.TRISA9 = 0; 
     while(1){
-        LATBbits.LATB5 = 1; // led ON
+//        LATBbits.LATB5 = 1; // led ON
+        PORTAbits.RA9 = 1;
     }
     return 0;
 }

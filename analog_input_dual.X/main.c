@@ -29,7 +29,7 @@ int main(void)
 	ADPCFG              = 0xFFFC;   /* AN0 and AN1 are analog inputs */
 	ADSTAT              = 0;        /* Clear the ADSTAT register */
 	ADCPC0bits.TRGSRC0  = 1;        /* Use SW trigger */
-	ADCPC0bits.IRQEN0	  = 1;		  /* Enable the interrupt	*/
+	ADCPC0bits.IRQEN0	= 1;		  /* Enable the interrupt	*/
 	
 	ADCONbits.ADON 	    = 1;        /* Start the ADC module	*/	
 			
@@ -51,9 +51,11 @@ int main(void)
 		                               complete	*/
 		channel1Result 	= ADCBUF1;  /* Read the result of the second
 		                               conversion	*/	
+        channel3Result  = ADCBUF3;
 		ADCPC0bits.SWTRG0	= 1;    /* Trigger another conversion */	
         
         p1 = channel1Result; // analog input
+        p2 = channel3Result;
         printf("P1 : %d \t P2 : %d ", p1, p2);
         
         __delay32(30000000);
@@ -70,6 +72,10 @@ void __attribute__ ((interrupt, no_auto_psv)) _ADCInterrupt(void)
     int channel2Result;
 	
 	IFS0bits.ADIF       = 0;        /* Clear ADC Interrupt Flag */
+    IFS2bits.ADCP2IF    = 0;
+    
 	channel0Result      = ADCBUF0;  /* Get the conversion result */
+    channel2Result      = ADCBUF2;
+    
 	ADSTATbits.P0RDY    = 0;        /* Clear the ADSTAT bits */	
 }
