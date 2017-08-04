@@ -33,9 +33,14 @@ ADCSSL  = 0;
 ADCON3  = 0x0302;   // Auto sampling 3 TAD, TAD = internal 2 TCY
 ADCON2  = 0x030C;   // CHPS = 1x implies simultaneous cample CH0 to CH3. SMPI = 0011 for interrupt after 4 converts
 
+// Turn LED on RA9 ON
+    PORTA = 0xffff; 
+    TRISAbits.TRISA9 = 0; 
 
 ADCON1bits.ADON = 1;// turn ADC ON
 while(1){
+    PORTAbits.RA9 = 1;
+    
     ADC16Ptr        = &ADCBUF0;     // initialize ADCBUF pointer
     OutDataPtr      = &OutData[0];  // point to first TXbuffer value
     IFS0bits.ADIF   = 0;            // clear the interrupt
@@ -44,6 +49,7 @@ while(1){
         ADCValue = *ADC16Ptr++;
         LoadADC(ADCValue);
     }
+    return 0;
 }                   // repeat
 
 // DAC
@@ -55,5 +61,3 @@ while(1){
  */
 
 // PGA 
-
-// 
