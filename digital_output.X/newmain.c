@@ -23,6 +23,7 @@ int main(void){
     while(1){
 //        LATBbits.LATB5 = 1; // led ON
         PORTAbits.RA9 = 1;
+        __delay_ms(1000);
     }
     return 0;
 }
