@@ -117,12 +117,12 @@ Program Memory  [Origin = 0x100, Length = 0x1f00]
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x100               0x622           0x933  (2355)
-.const                       0x722                 0x6             0x9  (9)
-.dinit                       0x728                0x88            0xcc  (204)
-.init.delay32                0x7b0                0x1c            0x2a  (42)
-.text                        0x7cc                0x14            0x1e  (30)
+.const                       0x722                 0xa             0xf  (15)
+.dinit                       0x72c                0x88            0xcc  (204)
+.init.delay32                0x7b4                0x1c            0x2a  (42)
+.text                        0x7d0                0x14            0x1e  (30)
 
-                 Total program memory used (bytes):          0xa50  (2640) 22%
+                 Total program memory used (bytes):          0xa56  (2646) 22%
 
 
 Ivt Memory  [Origin = 0x4, Length = 0x7c]
@@ -197,8 +197,8 @@ External Symbols in Program Memory (by address):
                   0x0005ae                  _free
                   0x000690                  _malloc
                   0x0006fe                  __Getmem
-                  0x0007b0                  ___delay32
-                  0x0007cc                  _main
+                  0x0007b4                  ___delay32
+                  0x0007d0                  _main
                   0xf80000                  __FBS.sec
                   0xf80004                  __FGS.sec
 
@@ -212,7 +212,7 @@ External Symbols in Program Memory (by name):
                   0xf80004                  __FGS.sec
                   0x0003e0                  __Fwprep
                   0x0006fe                  __Getmem
-                  0x0007b0                  ___delay32
+                  0x0007b4                  ___delay32
                   0x000152                  __data_init
                   0x000152                  __data_init_standard
                   0x00013c                  __psv_init
@@ -221,7 +221,7 @@ External Symbols in Program Memory (by name):
                   0x0002ac                  _fputc
                   0x0002f8                  _fputs
                   0x0005ae                  _free
-                  0x0007cc                  _main
+                  0x0007d0                  _main
                   0x000690                  _malloc
                   0x000392                  _memcpy
                   0x000296                  _puts
@@ -1042,16 +1042,16 @@ __c30_signature
 .config_FNOSC     0xf80006          0x2
  .config_FNOSC    0xf80006          0x2 build/default/production/newmain.o
 
-.const              0x8722          0x6 load address 0x000722  
- .const             0x8722          0x6 build/default/production/newmain.o
+.const              0x8722          0xa load address 0x000722  
+ .const             0x8722          0xa build/default/production/newmain.o
 
-.dinit            0x000728         0x88
- .dinit           0x000728         0x88 data_init
+.dinit            0x00072c         0x88
+ .dinit           0x00072c         0x88 data_init
 
-.init.delay32     0x0007b0         0x1c
- .init.delay32    0x0007b0         0x1c c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(delay32.Leo)
-                  0x0007b0                  ___delay32
+.init.delay32     0x0007b4         0x1c
+ .init.delay32    0x0007b4         0x1c c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(delay32.Leo)
+                  0x0007b4                  ___delay32
 
-.text             0x0007cc         0x14
- .text            0x0007cc         0x14 build/default/production/newmain.o
-                  0x0007cc                  _main
+.text             0x0007d0         0x14
+ .text            0x0007d0         0x14 build/default/production/newmain.o
+                  0x0007d0                  _main

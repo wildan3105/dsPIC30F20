@@ -20,6 +20,7 @@
     </logicalFolder>
     <itemPath>config.h</itemPath>
     <itemPath>main.c</itemPath>
+    <itemPath>adc.c</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>

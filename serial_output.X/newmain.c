@@ -30,7 +30,7 @@ int main(void){
     U1MODEbits.UARTEN = 1; // enable UART
     
     while(1){
-        printf("test \n");
+        printf("750,250 \n");
         __delay_ms(1000);
     };
     return -1;

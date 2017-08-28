@@ -1,3 +1,2 @@
 build/default/debug/main.o:  \
-main.c  \
-config.h 
+main.c 
