@@ -21,6 +21,8 @@
     <itemPath>config.h</itemPath>
     <itemPath>main.c</itemPath>
     <itemPath>adc.c</itemPath>
+    <itemPath>spi.h</itemPath>
+    <itemPath>my_spi.h</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
