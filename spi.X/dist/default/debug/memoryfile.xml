@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project>
-  <executable name="dist/default/debug/analog_input_dual.X.debug.elf">
+  <executable name="dist/default/debug/spi.X.debug.elf">
     <memory name="data">
       <units>bytes</units>
       <length>512</length>
-      <used>293</used>
-      <free>219</free>
+      <used>79</used>
+      <free>433</free>
     </memory>
     <memory name="program">
       <units>bytes</units>
       <length>11904</length>
-      <used>6996</used>
-      <free>4908</free>
+      <used>456</used>
+      <free>11448</free>
     </memory>
   </executable>
 </project>

@@ -22,7 +22,6 @@
     <itemPath>main.c</itemPath>
     <itemPath>adc.c</itemPath>
     <itemPath>spi.h</itemPath>
-    <itemPath>my_spi.h</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -164,6 +163,9 @@
         <property key="relaxed-math" value="false"/>
         <property key="save-temps" value="false"/>
       </C30Global>
+      <PICkit2PlatformTool>
+        <property key="pk2settings.setvddvoltage" value="5.00"/>
+      </PICkit2PlatformTool>
     </conf>
   </confs>
 </configurationDescriptor>

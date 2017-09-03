@@ -6,9 +6,10 @@
  */
 
 // SPI port configuration
-#define SPI_OUT     _RE5
-#define SPI_CLK     _RE2
-#define SPI_CS      _RE5
+#define SPI_DATA        _RE3
+#define SPI_CLK         _RE2
+#define SPI_CS_DAC      _RE5
+#define SPI_CS_PGA1     _RE4
 
 #define FCY 8000000 // FCY = FOSC / 2
 
@@ -18,23 +19,64 @@
 #include "config.h"
 
 #include "spi.h"
-#include "my_spi.h"
 
 unsigned int a1 = 0;
 unsigned int a2 = 0;
 
 // SPI initialization
-void Init_SPI(void)
+void Init_SPI (void)
 {
-    // setup the SPI peripheral
-    SPI1STAT = 0x0;                             // disable the SPI module (just in case)
-    SPI1CON1 = 0x0161;                          // FRAMEN = 0, SPIFSD = 0, DISSDO = 0, MODE16 = 0; SMP = 0; CKP = 1; CKE = 1; SSEN = 0; MSTEN = 1; SPRE = 0b000, PPRE = 0b01
-    SPI1CON1bits.CKE = 0x00;
-    SPI1CON1bits.CKP = 0x00;
-    SPI1STAT = 0x8000;                          // enable the SPI module
+    // SPISTAT
+    _SPIRBF     = 0; // receive is not complete, SPIxRXB is empty
+    _SPITBF     = 1; // transmit not started yet, SPIxTXB is full
+    _SPIROV     = 0; // no overflow has occured
+    _SPISIDL    = 0; // continue module operation in idle mode
+    _SPIEN      = 1; // enable module and configures SCKx, SDOx, SDIx, and SSx as serial port pins
+    
+    // SPICON1
+    _PPRE0      = 0; // (master mode) primary prescale 64:1 
+    _PPRE1      = 0; // (master mode) primary prescale 64:1
+    _SPRE0      = 0;
+    _SPRE1      = 0;
+    _SPRE2      = 0;
+    _MSTEN      = 1; // master mode
+    _CKP        = 0; // -(clock polarity select bit) idle state for clock is a HIGH, active state is a LOW
+    _SSEN       = 0; // (slave select enable bit) not used by module
+    _CKE        = 0; // -(SPIx clock edge select bit) according to bit 6
+    _SMP        = 1; // (master) input data sampled at end of data output time
+    _MODE16     = 1; // 16-bits word-wide
+    _DISSDO     = 0; // -disable SDOx
+    _DISSCK     = 0;
+    _PPRE       = 0;
+    _SPRE       = 0;
 }
 
-// offset voltage by DAC over SPI
+// UART initialization
+void Init_UART(void){
+    __C30_UART = 1;
+    
+    _STSEL  = 0; // one stop bit
+    _PDSEL0 = 0; // no parity
+    _PDSEL1 = 0; // 8-bit
+    _BRGH   = 1; // BRG generates 4 clocks per bit period (4x Baud Clock, high-speed mode)
+    _UARTEN = 1; // enable UART
+    
+    U1BRG = 51; // baudrate
+}
+
+void Write_DAC ( unsigned int data )
+{
+    SPI_CS_DAC = 0;                 // select slave device : DAC
+    int temp;
+    temp = SPI1BUF;                 // dummy read of the SPI1BUF register to clear the SPIRBF flag
+    SPI1BUF = data;              // write the data out to the SPI peripheral
+    while( !SPI1STATbits.SPIRBF );  // wait for the data to be sent out
+    SPI_CS_DAC  = 1;                // deselect slave device, transmission complete
+}
+
+// random sinusoidal table
+
+// offset voltage by DAC through SPI
 // the value from DAC should be the negative side of input
 void DAC(void){
     // [1]
@@ -46,26 +88,39 @@ void DAC(void){
     // if DAC input code = 4095 and Gain = 2 
     // Vout = (2.048 * 4095)/4096 * 2 = 4.096 ~ since Vdd = 3.3v, so Vout = 3.3 volt
     
-    unsigned long MSBuffer, LSBuffer;
-    SPI_CS = 0; // low
+    // Example : set output to be 2.5 volt
+    // DAC input code : 2500 => 1001110001001000 => hex : 9C48
     
-    SPI1BUF = 0x07;
-    while (!SPI1STATbits.SPIRBF);   //4.Check if SPI Transfer Completed
-    MSBuffer = SPI1BUF;             //5.Read and Discard Data in SSPBUF 
-    __delay_ms(200);
-
-    SPI1BUF = 0xFF;   
-    while (!SPI1STATbits.SPIRBF); 
-    LSBuffer = SPI1BUF;
-
-    SPI_CS = 1;
+//    unsigned long MSBuffer, LSBuffer;
+//    SPI_CS = 0; // low
+//    
+//    SPI1BUF = 0x07;
+//    while (!SPI1STATbits.SPIRBF);   //4.Check if SPI Transfer Completed
+//    MSBuffer = SPI1BUF;             //5.Read and Discard Data in SSPBUF 
+//    __delay_ms(200);
+//
+//    SPI1BUF = 0xFF;   
+//    while (!SPI1STATbits.SPIRBF); 
+//    LSBuffer = SPI1BUF;
+//
+//    SPI_CS = 1;
 }
 
-// gain amplifier by PGA over SPI
+// gain amplifier by PGA through SPI
 void PGA(void){
+    // 8 bytes instruction
+    // 8 bytes data
     // used to amplify or attenuate incoming signal
     // also to drive 2nd input to comparator inside PIC
     // the comparator will initiate interrupt when input voltage cross the threshold set by internal DAC
+    // gain selection : 1, 2, 5, and 10
+    
+    // Example, set gain to be 1
+    // instruction register : 000x xxx0
+    // gain register        : xxxx x000 -> default (gain = 1) : 000
+    // channel register     : xxxx x000 -> using CH0 and CH1 
+        // - CH0 (default)  : 000
+        // - CH1            : 001
     
 }
 
@@ -76,7 +131,7 @@ void Init_ADC(void)
 	
 	ADCONbits.ADSIDL    = 0;        /* Operate in Idle Mode	*/
 	ADCONbits.FORM      = 0;        /* Output in Integer Format	*/
-	ADCONbits.EIE       = 1;        /* Enable Early Interrupt */
+	ADCONbits.EIE       = 0;        /* Enable Early Interrupt */
 	ADCONbits.ORDER     = 0;        /* Even channel first */
 	ADCONbits.SEQSAMP   = 1;        /* Sequential Sampling Enabled */
 	ADCONbits.ADCS      = 5;        /* Clock Divider is set up for Fadc/14 */
@@ -103,30 +158,30 @@ void Init_ADC(void)
 
 void __attribute__ ((interrupt, no_auto_psv)) _ADCInterrupt(void)
 {
-    
     a1                  = ADCBUF0;
     a2                  = ADCBUF1;
-    
-    IFS0bits.ADIF       = 0;
+    IFS0bits.ADIF       = 0; /* clear A/D interrupt */
+    ADSTATbits.P0RDY    = 0;
 }
 
 int main(void){
     // LED indicator
     PORTA = 0xffff; 
     TRISAbits.TRISA9 = 0; 
-    
-    // initialize SPI
-    Init_SPI();
-    
+   
+    // initialize UART
+    // Init_UART();
+       
     // initialize ADC
-    Init_ADC();
-    
-    // UART config
-    __C30_UART = 1;
-    U1BRG = 12; // baudrate
-    U1MODEbits.UARTEN = 1; // enable UART
+    //Init_ADC();
     
     while(1){
+        // initialize SPI
+        Init_SPI();
+        
+        // write to DAC
+        Write_DAC(0x9C48);
+               
         // LED ON
         PORTAbits.RA9 = 1;
         
@@ -136,4 +191,6 @@ int main(void){
         printf("\n");
         __delay_ms(100);    // 100 miliseconds
     }
+    
+    return 0;
 }
