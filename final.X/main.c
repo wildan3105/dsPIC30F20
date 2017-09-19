@@ -83,12 +83,12 @@ void Init_UART(void){
     // 19200    : 103   [check]
     // 38400    : 51    [check]
     // 57600    : 34    [check] - rev (19/9/2017)
-    // 115200   : 16    [check] (115.2Kbps)
-    // 230400   : 8     [check] - unstable
+    // 115200   : 17    [check] - rev (19/9/2017)
+    // 230400   : 8     [check] - rev (19/9/2017) *BEST OPTION 230.4 Kbps*
     // 460800   : 3     []
     // 921600   : 1     []
     
-    U1BRG   = 16; // baudrate
+    U1BRG   = 8; // baudrate
 }
 
 int main(void) {
@@ -96,8 +96,8 @@ int main(void) {
     
     // FLOAT TO STRING CONVERSION
     float f = v2;
-    char str[30];
-    floatToString(f, str);
+    char str_v2[30];
+    floatToString(f, str_v2);
 	       
     Init_UART();
        
@@ -108,7 +108,7 @@ int main(void) {
 //        printf(",");
         printf("0");
         printf(",");
-        printf("%s", str);
+        printf("%s", str_v2);
         printf("\n");
         __delay_ms(10);
     }
