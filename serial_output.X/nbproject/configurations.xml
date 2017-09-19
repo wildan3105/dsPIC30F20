@@ -20,6 +20,7 @@
     </logicalFolder>
     <itemPath>newmain.c</itemPath>
     <itemPath>config.h</itemPath>
+    <itemPath>formatter.h</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>

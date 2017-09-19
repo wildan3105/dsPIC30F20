@@ -22,6 +22,7 @@
     <itemPath>main.c</itemPath>
     <itemPath>adc.c</itemPath>
     <itemPath>spi.h</itemPath>
+    <itemPath>spi_master.h</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
