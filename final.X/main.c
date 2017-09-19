@@ -79,21 +79,23 @@ void Init_UART(void){
     _UARTEN = 1; // enable UART
     
     /* Baudrate generator */
+    // 9600     : 207   [check]
+    // 19200    : 103   [check]
     // 38400    : 51    [check]
-    // 57600    : 33    [check]
+    // 57600    : 34    [check] - rev (19/9/2017)
     // 115200   : 16    [check] (115.2Kbps)
     // 230400   : 8     [check] - unstable
     // 460800   : 3     []
     // 921600   : 1     []
     
-    U1BRG   = 51; // baudrate
+    U1BRG   = 16; // baudrate
 }
 
 int main(void) {
     Init_ADC();
     
     // FLOAT TO STRING CONVERSION
-    float f = -0.343;
+    float f = v2;
     char str[30];
     floatToString(f, str);
 	       
@@ -104,6 +106,8 @@ int main(void) {
 //        printf(",");
 //        printf("%d", a2);
 //        printf(",");
+        printf("0");
+        printf(",");
         printf("%s", str);
         printf("\n");
         __delay_ms(10);
